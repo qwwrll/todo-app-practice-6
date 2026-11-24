@@ -1,0 +1,25 @@
+extends layout.pug
+
+block title
+  title Список справ
+
+block content
+  h1 Список справ
+
+  form#task-form
+    label(for="task-title") Назва задачі
+    input#task-title(type="text" name="title")
+    button(type="submit") Додати задачу
+
+  ul#task-list
+    each task in tasks
+      li(data-id=task.id)
+        if task.completed
+          s= task.title
+          |  — Виконано
+        else
+          span= task.title
+        |
+        button(type="button" data-action="PUT") Змінити статус
+        |
+        button(type="button" data-action="DELETE") Видалити
